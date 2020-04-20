@@ -1,0 +1,2 @@
+class KaraokeDeliveryModel < ApplicationRecord
+end
