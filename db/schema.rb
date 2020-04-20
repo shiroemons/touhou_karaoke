@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_20_161158) do
+ActiveRecord::Schema.define(version: 2020_04_20_162729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,18 @@ ActiveRecord::Schema.define(version: 2020_04_20_161158) do
     t.string "karaoke_type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "original_songs", primary_key: "code", id: :string, force: :cascade do |t|
+    t.string "original_code", null: false
+    t.string "title", null: false
+    t.string "composer", default: "", null: false
+    t.integer "track_number", null: false
+    t.boolean "is_duplicate", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["code"], name: "index_original_songs_on_code", unique: true
+    t.index ["original_code"], name: "index_original_songs_on_original_code"
   end
 
   create_table "originals", primary_key: "code", id: :string, force: :cascade do |t|
